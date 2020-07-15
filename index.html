@@ -1,15 +1,3 @@
-<!--
-/*---------------------------CREDITS------------------------- */
-/*
- * ABOUT: Music Player with Vanila Javascript, Html and CSS
- * AUTHOR: SMRUTIKANT NAYAK
- * YEAR:2020
- * smrutigml@gmail.com
- * LinkedIn:https://www.linkedin.com/in/smrutikant-nayak-4a833345/
- */
-
- /*-----------------------------------------------------------*/
--->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -59,33 +47,37 @@
       <!--Playlist Holder-->
       <div id="play-list-holder" class="full-width">
         <ul id="playlist">
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>The many miles we walk...</li>
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>Some say love...</li>
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>Fly on...</li>
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>What we know...</li>
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>The sky falls apart...</li>
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>When it rains...</li>
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>The hailstones and you..</li>
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>You said...</li>
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>The space between us...</li>
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>Let's be alive...</li>
-          <li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>Once more the angel wep...</li>
+          <!--<li class="full-width play-list"><i class="fa fa-music" aria-hidden="true"></i>The many miles we walk...</li>-->
         </ul>
       </div>
     </div>
     <div id="main-container">
-
       <div id="audio-holder">
-        <audio  id="track-on-wheel" src="" controls autoplay></audio>
+        <audio  id="track-on-wheel" src="" controls></audio>
       </div>
       <div id="song-info">
-        <h4 id="songname"></h4>
+        <h5 id="songname"></h5>
         <p><marquee id="songinf"></marquee></p>
       </div>
       <div class="poster">
+        <span id="discInner"></span>
         <img id="clipart" src="">
       </div>
       <div id="custom-audio-holder">
+        <div id="speaker-holder">
+          <i class="fa fa-volume-up" id="the-speaker"></i>
+        </div>
+        <div id="volumeholder">
+          <div id="volumebar-holder">
+            <div id="volumecontrol"></div>
+          </div>
+        </div>
+        <div id="progress-bar-holder">
+          <span id="begnTime" class="track-time"></span>
+          <span id="curTime" class="track-time"></span>
+          <span id="endTime" class="track-time"></span>
+          <div id="progress"></div>
+        </div>
         <div id="suffle" class="audio-control-holder">
           <i class="fa fa-random" aria-hidden="true"></i>
         </div>
@@ -99,18 +91,24 @@
           <i class="fa fa-forward"></i>
         </div>
         <div id="repeat-song" class="audio-control-holder">
-          <i class="fa fa-repeat" aria-hidden="true"></i>
+          <i class="fa fa-repeat" aria-hidden="true">
+            <i id="repeatcurrent"></i>
+          </i>
         </div>
       </div>
     </div>
     <span id="lyricsExposer">
         <i class="fa fa-pencil" aria-hidden="true"></i> 
-        <span id="ltext">Show lyrics...</span>
+        <span id="ltext">Show Lyrics...</span>
     </span>
 
     <div id="lyricsHolder">
-      <div id="lyrics-title">
-        <h4>Lyrics...</h4>
+      <div id="secondary-control">
+          <ul>
+            <li><i id="secondary-prev" class="fa fa-backward"></i></li>
+            <li><i id="secondary-play" class="fa fa-play"></i></li>
+            <li><i id="secondary-next" class="fa fa-forward"></i></li>
+        </ul>
       </div>
       <p id="lyrics-content">
       </p>

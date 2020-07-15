@@ -1,0 +1,341 @@
+
+/*---------------------------CREDITS------------------------- */
+/*
+ * ABOUT: Music Player with Vanila Javascript, Html and CSS
+ * AUTHOR: SMRUTIKANT NAYAK
+ * YEAR:2020
+ * smrutigml@gmail.com
+ * LinkedIn:https://www.linkedin.com/in/smrutikant-nayak-4a833345/
+ */
+
+ /*-----------------------------------------------------------*/
+ 
+@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Questrial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 100vh;
+  margin: 0;
+  background-image: url('../img/themes/galaxy1.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+
+}
+
+#nav-exposer{
+  position:fixed;
+  top:10px;
+  left:10px;
+  color:#fff;
+  z-index: 12;
+  cursor:pointer;
+}
+.search-bar {
+  position: relative;
+}
+
+.search-bar.active .input-text {
+  min-width: 100%;
+  border: none;
+  background:rgba(255,255,255,.2);
+  padding: 18px;
+  font-style: italic;
+  color:#fff;
+  border-radius: 18px;
+}
+
+.search-bar .icon {
+  cursor: pointer;
+  position: absolute;
+  top: 47%;
+  right: 20px;
+  transform: translateY(-50%);
+  padding: 13px 15px 13px 11px;
+  color:#ccc;
+}
+
+.search-bar .input-text {
+  max-width: 0;
+  border: 0;
+  border-color: #ccc;
+  height: 20px;
+  padding: 8px 6px 8px 35px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+#playlist{
+  list-style: none;
+  background: rgba(255,255,255,.1);
+  border-radius: 5px;
+  padding: 20px;
+}
+#playlist li{
+  color:#fff;
+  font-size: 12px;
+  cursor:pointer;
+  transition: all 0.2s ease-in-out;
+  width:95%
+}
+#playlist li:hover{
+  transform: scale(1.2,1.2);
+  transform-origin: unset;
+  background: rgba(0,0,0,.3);
+  padding: 8px;
+  border-radius: 3px;
+  padding-left: 20px;
+  margin-left:7.5px;
+}
+#playlist li i{
+  margin-right:5px;
+  color:#ff4f68;
+}
+#social{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 12;
+  padding: 5px 17px; 
+ 
+}
+#social.lyrics-opened{
+  background: rgba(255,255,255,.3);
+  border-radius: 0 0 0 11px;
+}
+#social-list{
+  list-style: none;
+  padding:0;
+}
+#social-list li{
+  display: inline-block;
+  padding: 4px;
+  cursor: pointer;
+}
+#social-list li a{
+  color:#fff;
+}
+.fair-text{
+  color:#fff;
+}
+.full-width{
+  width: 100%;
+  padding:10px;
+}
+.headig-text{
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.titletext{
+  margin-left: 20px;
+}
+
+#search-container{
+  margin-top:30px;
+}
+#leftNavBar{
+  position: fixed;
+  left:0;
+  top:0;
+  padding-top:45px;
+  background-color: rgba(0,0,0,.8);
+  z-index: 11;
+  height: 100vh;
+  width: 350px;
+  transform:translateX(-100%) ;
+  transition: transform 0.3s ease-in-out;
+  
+}
+#leftNavBar.opened{
+  transform: translateX(0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#theme-changer{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 12;
+}
+#change-theme{
+  background:rgba(0,0,0,.8);
+  color:#fff;
+  padding: 15px;
+  border-radius: 20px;
+  border:none;
+  cursor: pointer;
+  font-family: 'Questrial', sans-serif;
+  font-size: 13px;
+
+}
+#change-theme-text{
+  margin-left: 10px;
+}
+#lyricsHolder{
+  position: fixed;
+  z-index: 10;
+  width: 400px;
+  height: 100vh;
+  background: rgba(0,0,0,.5);
+  top:0;
+  right: 0;
+  transform:translateX(100%) ;
+  transition: transform 0.4s ease-in-out;
+}
+#lyricsHolder.lyrics-expanded{
+  transform: translateX(0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#ltext{
+  margin-left:10px;
+}
+
+#lyricsExposer{
+    position: fixed;
+    top: 20%;
+    right: 0px;
+    font-size: 13px;
+    border-radius: 6px 0 0 6px;
+    background: rgba(0,0,0,.3);
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px 0px 0px 10px;
+    border: none;
+    cursor: pointer;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#lyrics-title h4{
+  color:#fff;
+  margin-top: 40px;
+}
+#lyrics-content{
+    color: aqua;
+    font-size: 12px;
+    line-height: 2;
+    width:90%;
+    text-align: center;
+    overflow-y: scroll;
+    background: rgba(255,255,255,.2);
+    padding: 30px;
+    border-radius: 5px;
+}
+#lyricsExposer.expanded{
+  right:400px;
+}
+
+
+
+/*Audio Section*/
+#main-container{
+    display: flex;
+    padding: 20px 30px;
+    position: fixed;
+    top: 0;
+    /* margin: calc(50vh - 70px); */
+    width: 400px;
+    background: rgba(255,255,255,.3);
+    min-height: 80vh;
+    margin-top: 10vh;
+    box-shadow:2px 2px 250px #ccc;
+    border-radius: 8px;
+    align-items: center;
+}
+#custom-audio-holder{
+    padding: 30px;
+    background: rgba(184,255,255,.1);
+    display: flex;
+    border-radius: 50px;
+    box-shadow: 2px 2px 110px #ccc;
+    width: 90%;
+    max-height: 91px;
+    bottom: 20px;
+    position: absolute;
+    left: 5%;
+}
+#song-info{
+  position: absolute;
+  top: 15px;
+  text-align: center;
+  width: 94%;
+  font-size: 21px;
+  color: whitesmoke;
+  line-height: 1;
+  left: 3%;
+  padding: 10px;
+  background: rgba(0,0,0,.2);
+  border-radius: 5px;
+}
+#song-info p{
+  margin-top: -18px;
+
+}
+#songinf{
+  font-size: 12px;
+  padding-top: 0;
+}
+.poster{
+  margin:auto;
+}
+#clipart{
+  border-radius:50%;
+}
+.audio-control-holder{
+  
+  margin:auto;
+}
+.audio-control-holder i{
+  color:darkslategray;
+  font-size: 18px;
+  cursor: pointer;
+}
+#play-pause{
+  margin: auto;
+}
+#audio-holder{
+  display: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#lyrics-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#lyrics-content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+@media (max-width: 800px) {
+  .screen,
+  .controls {
+    width: 90%;
+  }
+}
+@media (max-width: 500px) {
+  #main-container,#leftNavBar{
+    width: 100%;
+  }
+  #play-list-holder,#playlist{
+    overflow-y: scroll;
+  }
+
+}
