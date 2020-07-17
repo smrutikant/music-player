@@ -10,7 +10,7 @@ Theme/mood changing Backgrounds,
 Lyrics,
 Song Credits Display in a cool way
 
-More features Comming Soon on upcoming commits
+More features Comming Soon
 
 Cheers,
 Smrutikant
